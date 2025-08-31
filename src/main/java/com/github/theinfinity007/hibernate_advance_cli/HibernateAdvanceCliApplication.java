@@ -23,9 +23,17 @@ public class HibernateAdvanceCliApplication {
 //				createInstructor(appDAO);
 //				deleteInstructor(appDAO);
 
-				findInstructorDetail(appDAO);
+//				findInstructorDetail(appDAO);
+				deleteInstructorDetail(appDAO);
 			}
 		};
+	}
+
+	private void deleteInstructorDetail(AppDAO appDAO) {
+		int id = 3;
+		System.out.println("Deleting instructor detail with id " + id);
+		appDAO.deleteInstructorDetailById(id);
+		System.out.println("Done!");
 	}
 
 	private void findInstructorDetail(AppDAO appDAO) {
@@ -35,8 +43,8 @@ public class HibernateAdvanceCliApplication {
 		InstructorDetail instructorDetail = appDAO.findInstructorDetailById(id);
 		System.out.println("instructorDetail = " + instructorDetail);
 
-		Instructor instructor = instructorDetail.getInstructor();
-		System.out.println("instructor = " + instructor);
+//		Instructor instructor = instructorDetail.getInstructor();
+//		System.out.println("instructor = " + instructor);
 	}
 
 	private void deleteInstructor(AppDAO appDAO) {
