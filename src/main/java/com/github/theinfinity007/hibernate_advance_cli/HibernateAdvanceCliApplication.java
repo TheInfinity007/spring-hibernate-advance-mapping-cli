@@ -20,9 +20,23 @@ public class HibernateAdvanceCliApplication {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... args) throws Exception {
-				deleteInstructor(appDAO);
+//				createInstructor(appDAO);
+//				deleteInstructor(appDAO);
+
+				findInstructorDetail(appDAO);
 			}
 		};
+	}
+
+	private void findInstructorDetail(AppDAO appDAO) {
+		int id = 3;
+
+		System.out.println("Finding instructor detail with id " + id);
+		InstructorDetail instructorDetail = appDAO.findInstructorDetailById(id);
+		System.out.println("instructorDetail = " + instructorDetail);
+
+		Instructor instructor = instructorDetail.getInstructor();
+		System.out.println("instructor = " + instructor);
 	}
 
 	private void deleteInstructor(AppDAO appDAO) {

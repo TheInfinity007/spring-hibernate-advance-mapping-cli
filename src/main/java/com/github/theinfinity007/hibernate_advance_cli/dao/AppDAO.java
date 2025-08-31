@@ -1,6 +1,7 @@
 package com.github.theinfinity007.hibernate_advance_cli.dao;
 
 import com.github.theinfinity007.hibernate_advance_cli.entity.Instructor;
+import com.github.theinfinity007.hibernate_advance_cli.entity.InstructorDetail;
 import org.springframework.stereotype.Repository;
 
 public interface AppDAO {
@@ -9,4 +10,6 @@ public interface AppDAO {
     Instructor findInstructorById(int id);
 
     void deleteInstructorById(int id);
+
+    InstructorDetail findInstructorDetailById(int id);
 }
