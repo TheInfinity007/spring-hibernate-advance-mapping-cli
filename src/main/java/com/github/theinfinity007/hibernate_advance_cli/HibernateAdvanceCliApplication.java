@@ -30,7 +30,7 @@ public class HibernateAdvanceCliApplication {
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
-		int id = 3;
+		int id = 4;
 		System.out.println("Deleting instructor detail with id " + id);
 		appDAO.deleteInstructorDetailById(id);
 		System.out.println("Done!");
