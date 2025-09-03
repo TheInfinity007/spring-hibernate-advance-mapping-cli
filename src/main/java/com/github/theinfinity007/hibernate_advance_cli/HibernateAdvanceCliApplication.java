@@ -1,6 +1,7 @@
 package com.github.theinfinity007.hibernate_advance_cli;
 
 import com.github.theinfinity007.hibernate_advance_cli.dao.AppDAO;
+import com.github.theinfinity007.hibernate_advance_cli.entity.Course;
 import com.github.theinfinity007.hibernate_advance_cli.entity.Instructor;
 import com.github.theinfinity007.hibernate_advance_cli.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -24,9 +25,35 @@ public class HibernateAdvanceCliApplication {
 //				deleteInstructor(appDAO);
 
 //				findInstructorDetail(appDAO);
-				deleteInstructorDetail(appDAO);
+//				deleteInstructorDetail(appDAO);
+
+				createInstructorWithCourses(appDAO);
 			}
 		};
+	}
+
+	private void createInstructorWithCourses(AppDAO appDAO) {
+
+		// Create instructor
+		Instructor instructor = new Instructor("Chad", "Darby", "darby@yopmail.com");
+		InstructorDetail instructorDetail = new InstructorDetail("http://www.youtube.com", "Create courses in Java");
+
+		instructor.setInstructorDetail(instructorDetail);
+
+		// Create some courses
+		Course course1 = new Course("Air Guitar - The Ultimate Guide");
+		Course course2 = new Course("The Pinball Masterclass");
+
+		instructor.add(course1);
+		instructor.add(course2);
+
+		// Saving the instructor, it will also save the courses
+		System.out.println("Saving instructor with course");
+		System.out.println("instructor = " + instructor);
+		System.out.println("The Courses = " + instructor.getCourses());
+		appDAO.save(instructor);
+
+		System.out.println("Instructor detail saved");
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
