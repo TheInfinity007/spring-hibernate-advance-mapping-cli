@@ -33,9 +33,21 @@ public class HibernateAdvanceCliApplication {
 
 //				findInstructorWithCourses(appDAO);
 
-				findCoursesForInstructor(appDAO);
+//				findCoursesForInstructor(appDAO);
+
+				findInstructorWithCoursesJoinFetch(appDAO);
 			}
 		};
+	}
+
+	private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
+		int id = 5;
+		System.out.println("Finding instructor with id using JoinFetch " + id);
+
+		Instructor instructor = appDAO.findInstructorByIdJoinFetch(id);
+		System.out.println("instructor = " + instructor);
+		System.out.println("Associated courses = " + instructor.getCourses());
+		System.out.println("Done!");
 	}
 
 	private void findCoursesForInstructor(AppDAO appDAO) {
