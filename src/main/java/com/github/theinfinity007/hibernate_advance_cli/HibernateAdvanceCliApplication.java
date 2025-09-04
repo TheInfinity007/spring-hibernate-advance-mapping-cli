@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class HibernateAdvanceCliApplication {
 
@@ -29,9 +31,28 @@ public class HibernateAdvanceCliApplication {
 
 //				createInstructorWithCourses(appDAO);
 
-				findInstructorWithCourses(appDAO);
+//				findInstructorWithCourses(appDAO);
+
+				findCoursesForInstructor(appDAO);
 			}
 		};
+	}
+
+	private void findCoursesForInstructor(AppDAO appDAO) {
+		int id = 5;
+		System.out.println("Finding instructor with id " + id);
+
+		Instructor instructor = appDAO.findInstructorById(id);
+		System.out.println("instructor = " + instructor);
+
+		System.out.println("Finding courses for instructor with id " + id);
+
+		List<Course> courses = appDAO.findCoursesByInstructorId(id);
+		instructor.setCourses(courses);
+
+		System.out.println("associated courses" + instructor.getCourses());
+
+		System.out.println("Done!");
 	}
 
 	private void findInstructorWithCourses(AppDAO appDAO) {
