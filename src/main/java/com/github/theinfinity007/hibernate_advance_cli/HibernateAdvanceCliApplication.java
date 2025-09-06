@@ -35,9 +35,26 @@ public class HibernateAdvanceCliApplication {
 
 //				findCoursesForInstructor(appDAO);
 
-				findInstructorWithCoursesJoinFetch(appDAO);
+//				findInstructorWithCoursesJoinFetch(appDAO);
+
+				updateInstructor(appDAO);
 			}
 		};
+	}
+
+	private void updateInstructor(AppDAO appDAO) {
+
+
+		Instructor instructor = createInstructor(appDAO);
+		int id = instructor.getId();
+		System.out.println("Updating instructor with id "  + id);
+
+		instructor.setFirstName("new first name");
+		instructor.setLastName("new last name");
+
+		appDAO.update(instructor);
+
+		System.out.println("Done!");
 	}
 
 	private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
@@ -139,7 +156,7 @@ public class HibernateAdvanceCliApplication {
 		System.out.println("instructor detail = " + instructor.getInstructorDetail().toString());
 	}
 
-	private void createInstructor(AppDAO appDAO) {
+	private Instructor createInstructor(AppDAO appDAO) {
 		Instructor instructor = new Instructor("Chad", "Darby", "darby@yopmail.com");
 		InstructorDetail instructorDetail = new InstructorDetail("http://www.youtube.com", "Create courses in Java");
 
@@ -150,5 +167,6 @@ public class HibernateAdvanceCliApplication {
 		appDAO.save(instructor);
 
 		System.out.println("Instructor detail saved");
+		return instructor;
 	}
 }
