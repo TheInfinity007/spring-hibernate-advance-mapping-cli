@@ -37,9 +37,23 @@ public class HibernateAdvanceCliApplication {
 
 //				findInstructorWithCoursesJoinFetch(appDAO);
 
-				updateInstructor(appDAO);
+//				updateInstructor(appDAO);
+
+				updateCourse(appDAO);
 			}
 		};
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		int id = 10;
+
+
+		Course course = appDAO.findCourseById(id);
+
+		System.out.println("Updating course with id " + id);
+
+		course.setTitle("Air Guitar - The Ultimate Guide");
+		appDAO.update(course);
 	}
 
 	private void updateInstructor(AppDAO appDAO) {
