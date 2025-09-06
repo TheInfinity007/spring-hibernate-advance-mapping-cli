@@ -24,7 +24,7 @@ public class HibernateAdvanceCliApplication {
 			@Override
 			public void run(String... args) throws Exception {
 //				createInstructor(appDAO);
-//				deleteInstructor(appDAO);
+				deleteInstructor(appDAO);
 
 //				findInstructorDetail(appDAO);
 //				deleteInstructorDetail(appDAO);
@@ -39,7 +39,7 @@ public class HibernateAdvanceCliApplication {
 
 //				updateInstructor(appDAO);
 
-				updateCourse(appDAO);
+//				updateCourse(appDAO);
 			}
 		};
 	}
@@ -154,7 +154,7 @@ public class HibernateAdvanceCliApplication {
 	}
 
 	private void deleteInstructor(AppDAO appDAO) {
-		int id = 1;
+		int id = 5;
 		System.out.println("Deleting instructor with id " + id);
 		appDAO.deleteInstructorById(id);
 		System.out.println("Instructor deleted with id " + id);
