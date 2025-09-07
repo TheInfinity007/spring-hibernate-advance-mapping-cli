@@ -56,9 +56,21 @@ public class HibernateAdvanceCliApplication {
 
 //				addMoreCoursesToStudent(appDAO);
 
-				deleteCourse(appDAO);
+//				deleteCourse(appDAO);
+
+				deleteStudent(appDAO);
 			}
 		};
+	}
+
+	private void deleteStudent(AppDAO appDAO) {
+		int studentId = 19;
+
+		System.out.println("Deleting student with id " + studentId);
+
+		appDAO.deleteStudentById(studentId);
+
+		System.out.println("Done!");
 	}
 
 	private void addMoreCoursesToStudent(AppDAO appDAO) {
