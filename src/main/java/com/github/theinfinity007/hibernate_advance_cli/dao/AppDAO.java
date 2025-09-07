@@ -3,6 +3,7 @@ package com.github.theinfinity007.hibernate_advance_cli.dao;
 import com.github.theinfinity007.hibernate_advance_cli.entity.Course;
 import com.github.theinfinity007.hibernate_advance_cli.entity.Instructor;
 import com.github.theinfinity007.hibernate_advance_cli.entity.InstructorDetail;
+import com.github.theinfinity007.hibernate_advance_cli.entity.Student;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -35,4 +36,6 @@ public interface AppDAO {
     Course findCourseAndReviewByCourseId(int id);
 
     Course findCourseAndStudentsByCourseId(int id);
+
+    Student findStudentAndCoursesByStudentId(int id);
 }

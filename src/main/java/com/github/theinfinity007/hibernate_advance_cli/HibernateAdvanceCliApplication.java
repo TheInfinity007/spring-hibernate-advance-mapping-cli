@@ -50,9 +50,22 @@ public class HibernateAdvanceCliApplication {
 				// Many to many started
 //				createCourseAndStudents(appDAO);
 
-				findCourseAndStudents(appDAO);
+//				findCourseAndStudents(appDAO);
+
+				findStudentAndCourses(appDAO);
 			}
 		};
+	}
+
+	private void findStudentAndCourses(AppDAO appDAO) {
+		int studentId = 19;
+
+		System.out.println("Fetching student with id " + studentId);
+
+		Student student = appDAO.findStudentAndCoursesByStudentId(studentId);
+		System.out.println("student = " + student);
+
+		System.out.println("courses = " + student.getCourses());
 	}
 
 	private void findCourseAndStudents(AppDAO appDAO) {

@@ -3,6 +3,7 @@ package com.github.theinfinity007.hibernate_advance_cli.dao;
 import com.github.theinfinity007.hibernate_advance_cli.entity.Course;
 import com.github.theinfinity007.hibernate_advance_cli.entity.Instructor;
 import com.github.theinfinity007.hibernate_advance_cli.entity.InstructorDetail;
+import com.github.theinfinity007.hibernate_advance_cli.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,6 +128,17 @@ public class AppDAOImpl implements AppDAO {
         TypedQuery<Course> query = entityManager.createQuery(
                 "SELECT c from Course c JOIN FETCH c.students WHERE c.id = :id",
                 Course.class);
+        query.setParameter("id", id);
+
+        return query.getSingleResult();
+    }
+
+    @Override
+    public Student findStudentAndCoursesByStudentId(int id) {
+        TypedQuery<Student> query = entityManager.createQuery(
+                "SELECT s from Student s JOIN FETCH s.courses WHERE s.id = :id",
+                Student.class
+        );
         query.setParameter("id", id);
 
         return query.getSingleResult();
