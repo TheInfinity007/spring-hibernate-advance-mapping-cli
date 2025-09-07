@@ -54,7 +54,9 @@ public class HibernateAdvanceCliApplication {
 
 //				findStudentAndCourses(appDAO);
 
-				addMoreCoursesToStudent(appDAO);
+//				addMoreCoursesToStudent(appDAO);
+
+				deleteCourse(appDAO);
 			}
 		};
 	}
@@ -159,7 +161,7 @@ public class HibernateAdvanceCliApplication {
 	}
 
 	private void deleteCourse(AppDAO appDAO) {
-		int id = 12;
+		int id = 14;
 		System.out.println("Deleting course with id " + id);
 
 		appDAO.deleteCourseById(id);
