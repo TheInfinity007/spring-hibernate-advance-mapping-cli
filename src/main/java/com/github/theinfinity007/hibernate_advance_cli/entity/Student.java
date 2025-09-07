@@ -2,6 +2,9 @@ package com.github.theinfinity007.hibernate_advance_cli.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "student")
 public class Student {
@@ -19,6 +22,11 @@ public class Student {
 
     @Column(name = "email")
     private String email;
+
+    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE,
+                    CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Course> courses;
 
     public Student(){}
 
@@ -60,6 +68,23 @@ public class Student {
         this.email = email;
     }
 
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public void addCourse(Course course) {
+        if (courses == null) {
+            courses = new ArrayList<>();
+        }
+
+        courses.add(course);
+        course.add(this);   // add the current student to the course, for the bi-directional
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -67,6 +92,7 @@ public class Student {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", courses=" + courses +
                 '}';
     }
 }
