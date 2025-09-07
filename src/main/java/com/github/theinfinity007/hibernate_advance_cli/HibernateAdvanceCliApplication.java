@@ -1,10 +1,7 @@
 package com.github.theinfinity007.hibernate_advance_cli;
 
 import com.github.theinfinity007.hibernate_advance_cli.dao.AppDAO;
-import com.github.theinfinity007.hibernate_advance_cli.entity.Course;
-import com.github.theinfinity007.hibernate_advance_cli.entity.Instructor;
-import com.github.theinfinity007.hibernate_advance_cli.entity.InstructorDetail;
-import com.github.theinfinity007.hibernate_advance_cli.entity.Review;
+import com.github.theinfinity007.hibernate_advance_cli.entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -48,9 +45,31 @@ public class HibernateAdvanceCliApplication {
 
 //				retrieveCourseAndReviews(appDAO);
 
-				deleteCourseAndReviews(appDAO);
-			}
+//				deleteCourseAndReviews(appDAO);
+
+				// Many to many started
+				createCourseAndStudents(appDAO);			}
 		};
+	}
+
+	private void createCourseAndStudents(AppDAO appDAO) {
+		System.out.println("Creating course and students");
+
+		Course course = new Course("Pacman - How to score one Million Points");
+
+		Student student1 = new Student("John", "Doe", "john@yopmail.com");
+		Student student2 = new Student("Mary", "Public", "mary@yopmail.com");
+
+		course.add(student1);
+		course.add(student2);
+
+		System.out.println("Saving the course" + course);
+		appDAO.save(course);
+
+		System.out.println("course = " + course);
+		System.out.println("students = " + course.getStudents());
+
+		System.out.println("Done");
 	}
 
 	private void deleteCourseAndReviews(AppDAO appDAO) {
