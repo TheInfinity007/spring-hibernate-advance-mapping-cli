@@ -46,9 +46,21 @@ public class HibernateAdvanceCliApplication {
 
 //				createCourseAndReviews(appDAO);
 
-				retrieveCourseAndReviews(appDAO);
+//				retrieveCourseAndReviews(appDAO);
+
+				deleteCourseAndReviews(appDAO);
 			}
 		};
+	}
+
+	private void deleteCourseAndReviews(AppDAO appDAO) {
+		int courseId = 13;
+
+		System.out.println("Deleting course with id " + courseId);
+
+		appDAO.deleteCourseById(courseId);
+
+		System.out.println("Done!");
 	}
 
 	private void retrieveCourseAndReviews(AppDAO appDAO) {
