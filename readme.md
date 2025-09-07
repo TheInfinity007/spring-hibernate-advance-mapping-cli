@@ -53,3 +53,31 @@ CREATE TABLE `review` (
 	ON UPDATE NO ACTION ON DELETE NO ACTION
 ) engine=InnoDB
 ```
+
+#ManyToMany
+## Create Table
+`student`
+```
+CREATE TABLE student (
+    id int NOT NULL AUTO_INCREMENT,
+    first_name varchar(45) DEFAULT NULL,
+    last_name varchar(45) DEFAULT NULL,
+    email varchar(45) DEFAULT NULL,
+    PRIMARY KEY (id)
+) Engine=InnoDB
+```
+
+## Create Join Table 
+`course_student` 
+```
+CREATE TABLE course_student(
+    course_id int NOT NULL,
+    student_id int NOT NULL,
+    PRIMARY KEY (course_id, student_id),
+    KEY FK_STUDENT_idx (student_id),
+    CONSTRAINT FK_REFERENCE_COURSE FOREIGN KEY (course_id) REFERENCES course(id)
+    ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT FK_REFERENCE_STUDENT FOREIGN KEY (student_id) REFERENCES student(`id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION
+) Engine = InnoDB
+```
