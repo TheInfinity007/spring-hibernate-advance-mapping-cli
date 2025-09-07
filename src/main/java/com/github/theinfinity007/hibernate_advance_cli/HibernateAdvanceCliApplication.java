@@ -48,8 +48,23 @@ public class HibernateAdvanceCliApplication {
 //				deleteCourseAndReviews(appDAO);
 
 				// Many to many started
-				createCourseAndStudents(appDAO);			}
+//				createCourseAndStudents(appDAO);
+
+				findCourseAndStudents(appDAO);
+			}
 		};
+	}
+
+	private void findCourseAndStudents(AppDAO appDAO) {
+		int courseId = 14;
+
+		System.out.println("Fetching the course with id " + courseId);
+
+		Course course = appDAO.findCourseAndStudentsByCourseId(courseId);
+
+		System.out.println("Course = "  + course);
+		System.out.println("Students = " + course.getStudents());
+		System.out.println("Done!");
 	}
 
 	private void createCourseAndStudents(AppDAO appDAO) {
