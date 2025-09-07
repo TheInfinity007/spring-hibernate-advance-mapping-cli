@@ -38,3 +38,18 @@ CREATE TABLE `course` (
     ON DELETE NO ACTION ON UPDATE NO ACTION
 ) Engine = InnoDB AUTO_INCREMENT=10
 ```
+
+# OneToMany
+## Review Table Script
+```SQL
+CREATE TABLE `review` (
+	`id` int NOT NULL AUTO_INCREMENT,
+    `comment` varchar(256) DEFAULT NULL,
+	`course_id` int DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	KEY `FK_COURSE_ID_IDX` (`course_id`),
+	CONSTRAINT `FK_COURSE` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
+
+	ON UPDATE NO ACTION ON DELETE NO ACTION
+) engine=InnoDB
+```
