@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public class AppDAOImpl implements AppDAO {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Autowired
     public AppDAOImpl(EntityManager entityManager) {
@@ -110,5 +110,15 @@ public class AppDAOImpl implements AppDAO {
     @Transactional
     public void save(Course course) {
         entityManager.persist(course);
+    }
+
+    @Override
+    public Course findCourseAndReviewByCourseId(int id) {
+
+        TypedQuery<Course> query = entityManager.createQuery(
+                "select c from Course c JOIN FETCH c.reviews WHERE c.id = :id", Course.class);
+        query.setParameter("id", id);
+
+        return query.getSingleResult();
     }
 }

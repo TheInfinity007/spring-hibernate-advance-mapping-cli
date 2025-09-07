@@ -44,9 +44,22 @@ public class HibernateAdvanceCliApplication {
 
 //				deleteCourse(appDAO);
 
-				createCourseAndReviews(appDAO);
+//				createCourseAndReviews(appDAO);
+
+				retrieveCourseAndReviews(appDAO);
 			}
 		};
+	}
+
+	private void retrieveCourseAndReviews(AppDAO appDAO) {
+		int courseId = 13;
+
+		System.out.println("Fetching course with review with course id " + courseId);
+		Course course = appDAO.findCourseAndReviewByCourseId(courseId);
+
+		System.out.println("course = " + course);
+		System.out.println("Reviews = " + course.getReviews());
+		System.out.println("Done");
 	}
 
 	private void createCourseAndReviews(AppDAO appDAO) {
