@@ -15,9 +15,10 @@ public class Review {
     @Column(name="comment")
     private String comment;
 
+    // Since it is unidirection Course -> Review, that why we don't need the below code. No bidirection mapping is needed.
 //    @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
 //    @JoinColumn(name="course_id")
-    private Course course;
+//    private Course course;
 
     Review(){}
 
@@ -41,20 +42,12 @@ public class Review {
         this.comment = comment;
     }
 
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
 
     @Override
     public String toString() {
         return "Review{" +
                 "id=" + id +
-                ", comment='" + comment + '\'' +
-                ", course=" + course +
+                ", comment='" + comment +
                 '}';
     }
 }

@@ -4,6 +4,7 @@ import com.github.theinfinity007.hibernate_advance_cli.dao.AppDAO;
 import com.github.theinfinity007.hibernate_advance_cli.entity.Course;
 import com.github.theinfinity007.hibernate_advance_cli.entity.Instructor;
 import com.github.theinfinity007.hibernate_advance_cli.entity.InstructorDetail;
+import com.github.theinfinity007.hibernate_advance_cli.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -41,9 +42,26 @@ public class HibernateAdvanceCliApplication {
 
 //				updateCourse(appDAO);
 
-				deleteCourse(appDAO);
+//				deleteCourse(appDAO);
+
+				createCourseAndReviews(appDAO);
 			}
 		};
+	}
+
+	private void createCourseAndReviews(AppDAO appDAO) {
+		Course course = new Course("Pac - How to score One Million Points");
+
+		course.add(new Review("Great course.... loved it!"));
+		course.add(new Review("Cool course, job well done."));
+		course.add(new Review("What a dumb course, you are an idiot!"));
+
+		System.out.println("Saving the course with its reviews");
+		appDAO.save(course);
+		System.out.println("Saved");
+		System.out.println(course);
+		System.out.println(course.getReviews());
+		System.out.println("Done!");
 	}
 
 	private void deleteCourse(AppDAO appDAO) {
