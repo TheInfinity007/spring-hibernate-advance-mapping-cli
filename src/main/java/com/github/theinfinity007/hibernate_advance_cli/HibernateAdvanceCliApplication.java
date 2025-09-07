@@ -52,9 +52,31 @@ public class HibernateAdvanceCliApplication {
 
 //				findCourseAndStudents(appDAO);
 
-				findStudentAndCourses(appDAO);
+//				findStudentAndCourses(appDAO);
+
+				addMoreCoursesToStudent(appDAO);
 			}
 		};
+	}
+
+	private void addMoreCoursesToStudent(AppDAO appDAO) {
+		int studentId = 19;
+
+		Student student = appDAO.findStudentAndCoursesByStudentId(studentId);
+
+		Course course1 = new Course("Rubik's cube - How to speed cube");
+		Course course2 = new Course("Atari 2600 - Game Development");
+
+		student.addCourse(course1);
+		student.addCourse(course2);
+
+		System.out.println("Updating student " + student);
+		System.out.println("Associated courses Before " + student.getCourses());
+
+		appDAO.update(student);
+		System.out.println("Associated courses After " + student.getCourses());
+
+		System.out.println("Done!");
 	}
 
 	private void findStudentAndCourses(AppDAO appDAO) {
